@@ -5,14 +5,16 @@ using namespace std;
 class Board
 {
 	int size;
-	int** board;
+	char** board;
 
 public:
 
 	void Print();
-	void MoveX();
-	void MoveO();
+	bool Win();
 
 	Board(int);
 	~Board();
+	
+	friend class Computer;
+	friend class Person;
 };

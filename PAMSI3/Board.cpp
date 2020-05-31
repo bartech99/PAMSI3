@@ -5,32 +5,48 @@ using namespace std;
 
 void Board::Print()
 {
-	system("cls");
-	for (int i = 0; i < this->size; i++)
+	cout << "  ";
+	for (int i = 1; i <= this->size; i++)
+		cout << "   " << i;
+	cout << endl;
+	for (int i = 1; i <= this->size; i++)
 	{
+		cout << "   ";
 		for (int j = 0; j < this->size; j++)
-			cout << this->board[i][j] << " ";
-		cout << endl;
+			cout << "+---";
+		cout << "+" << endl;
+		cout << " " << i << " ";
+		for (int j = 0; j < this->size; j++)
+		{
+			cout << "| ";
+			if (this->board[i - 1][j] == '0')
+				cout << " ";
+			else
+				cout << this->board[i - 1][j];
+			cout << " ";
+		}
+		cout << "|" << endl;
 	}
+	cout << "   ";
+	for (int i = 0; i < this->size; i++)
+		cout << "+---";
+	cout << "+" << endl;
 }
 
-void Board::MoveX()
+bool Board::Win()
 {
-}
-
-void Board::MoveO()
-{
+	return false;
 }
 
 Board::Board(int s)
 {
 	this->size = s;
-	this->board = new int* [s];
+	this->board = new char* [s];
 	for (int i = 0; i < s; i++)
 	{
-		this->board[i] = new int[s];
+		this->board[i] = new char[s];
 		for (int j = 0; j < s; j++)
-			this->board[i][j] = 0;
+			this->board[i][j] = '0';
 	}
 }
 

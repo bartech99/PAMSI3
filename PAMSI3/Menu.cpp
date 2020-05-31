@@ -3,24 +3,59 @@
 #include <conio.h>
 using namespace std;
 
-constexpr auto MAX_SIZE = 100;
+constexpr auto MAX_SIZE = 10;
 
 void Menu::Init()
 {
+	system("cls");
+	char x;
 	cout << "--- Kolko i krzyzyk ---" << endl << endl;
-	cout << "Podaj rozmiar planszy: ";
+	cout << "Podaj tryb gry:" << endl;
+	cout << "singleplayer\t-s" << endl;
+	cout << "multiplayer\t-m" << endl << endl;
+	cout << "Twoj wybor: ";
+	while (true)
+	{
+		if (cin >> x)
+		{
+			if (x == 's')
+			{
+				system("cls");
+				cout << "--- Tryb gry gracz vs komputer ---" << endl;
+				this->mode = false;
+				break;
+			}
+			else if (x == 'm')
+			{
+				system("cls");
+				cout << "--- Tryb gry gracz vs gracz ---" << endl;
+				this->mode = true;
+				break;
+			}
+		}
+		cout << "Blad! Wpisz s lub m: ";
+	}
+	cout << endl << "Podaj rozmiar planszy (3-" << MAX_SIZE << "): ";
 	this->size = GetValue(3, MAX_SIZE);
-	cout << "Podaj zakres: ";
-	this->scope = GetValue(3, MAX_SIZE);
+	cout << "Podaj zakres sprawdzania wygranej (3- " << this->size << "): ";
+	this->scope = GetValue(3, this->size);
 }
 
 void Menu::Move()
 {
-	cout << "Teraz Twoj ruch." << endl;
 	cout << "Kolumna: ";
 	this->posX = GetValue(1, this->size) - 1;
 	cout << "Wiersz: ";
 	this->posY = GetValue(1, this->size) - 1;
+	cout << endl;
+}
+
+void Menu::Move(int x, int y)
+{
+	cout << "Teraz ruch gracza B." << endl;
+	this->posX = x;
+	this->posY = y;
+	cout << "Kolumna: " << x << ", wiersz: " << y << endl << endl;
 }
 
 bool Menu::Repeat()
@@ -35,7 +70,7 @@ bool Menu::Repeat()
 		else if (x == 'n')
 			return false;
 		else
-			cout << "Blad, jeszcze raz: ";
+			cout << "Blad! Jeszcze raz: ";
 	}
 }
 
@@ -59,12 +94,22 @@ int Menu::GetPosY()
 	return this->posY;
 }
 
-Menu::Menu(int s, int sc, int px, int py)
+bool Menu::GetMode()
+{
+	return this->mode;
+}
+
+Menu::Menu(int s, int sc, int px, int py, bool m)
 {
 	this->size = s;
 	this->scope = sc;
 	this->posX = px;
 	this->posY = py;
+	this->mode = m;
+}
+
+Menu::~Menu()
+{
 }
 
 void PressAnyKey()
