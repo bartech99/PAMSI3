@@ -4,6 +4,11 @@
 #include <iostream>
 using namespace std;
 
+/*
+ * Klasa pochodna od klasy player
+ * Wykonuje ruch gracza
+ */
+
 class Person :
     public Player
 {

@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+/*
+ * Klasa bazowa gracza - komputer lub czlowiek
+ */
+
 class Player
 {
 protected:

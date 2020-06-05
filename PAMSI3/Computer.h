@@ -5,11 +5,20 @@
 #include <iostream>
 using namespace std;
 
+constexpr auto INF = 100000;
+
+/*
+ * Klasa pochodna od klasy player
+ * Wykonuje ruch komputera
+ * Zawiera mechanizm sztucznej inteligencji
+ */
+
 class Computer :
     public Player
 {
-    void Make(char**);
-    int Minimax(char**, int, bool);
+    void Make(Board*);
+    int Depth(Board*);
+    int Minimax(Board*, int, bool, int, int);
 
 public:
 

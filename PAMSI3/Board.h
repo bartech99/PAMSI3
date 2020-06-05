@@ -2,17 +2,26 @@
 #include <iostream>
 using namespace std;
 
+/*
+ * Klasa ta zawiera plansze do gry
+ * Zajmuje sie operacjami na tej tablicy - wypisywanie planszy w konsoli,
+ * sprawdzenie czy ktos wygral, itd
+ */
+
 class Board
 {
 	int size;
+	int scope;
 	char** board;
 
 public:
 
 	void Print();
-	bool Win();
+	char Win();
+	char Check(char*);
+	int GetSize();
 
-	Board(int);
+	Board(int, int);
 	~Board();
 	
 	friend class Computer;

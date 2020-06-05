@@ -19,7 +19,7 @@ int main()
 	Person* p2;
 
 	int moves;
-	bool win;
+	char win;
 
 	while (true)
 	{
@@ -27,6 +27,7 @@ int main()
 
 		menu->Init();
 		moves = menu->GetSize() * menu->GetSize();
+		win = '0';
 
 		//ustawienie wskaznika polimorficznego
 		if (menu->GetMode()) //czlowiek vs czlowiek
@@ -44,7 +45,7 @@ int main()
 			player2 = comp;
 		}
 
-		board = new Board(menu->GetSize());
+		board = new Board(menu->GetSize(), menu->GetScope());
 		system("cls");
 		
 		//petla przeprowadzajaca gre
@@ -52,7 +53,7 @@ int main()
 		{
 			//gracz 1
 			win = board->Win();
-			if (moves && !win)
+			if (moves && win == '0')
 				player1->Move(menu, board);
 			else
 				break;
@@ -60,19 +61,21 @@ int main()
 			
 			//gracz 2
 			win = board->Win();
-			if (moves && !win)
+			if (moves && win == '0')
 				player2->Move(menu, board);
 			else
 				break;
 			moves--;
 		}
 
-		//sprawdzenie czy nie ma remisu
+		//sprawdzenie czy nie ma remisu lub wygranej
 		system("cls");
 		board->Print();
 		cout << endl;
-		if (!moves && !win)
+		if (!moves && win == '0')
 			cout << "Remis!" << endl << endl;
+		else
+			cout << "Gracz " << win << " zwycieza!" << endl << endl;
 		
 		if (menu->Repeat())
 		{

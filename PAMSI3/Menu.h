@@ -2,6 +2,11 @@
 #include <iostream>
 using namespace std;
 
+/*
+ * Klasa ta zajmuje sie obsluga uzytkownika
+ * Wyswietla stosowne komunikaty i pobiera potrzebne wartosci
+ */
+
 class Menu
 {
 	int size;
